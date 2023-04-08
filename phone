@@ -1,0 +1,38 @@
+class Phone:
+    def __init__(self, name, tel):
+        self.name = name
+        self.tel = tel
+
+class PhoneBook:
+    def __init__(self):
+        self.phonebook = []
+
+    def add(self, phone):
+        self.phonebook.append(phone)
+
+    def search(self, name):
+        for phone in self.phonebook:
+            if phone.name == name:
+                return phone.tel
+        return None
+
+if __name__ == '__main__':
+    n = int(input("인원수>>>"))
+    phonebook = PhoneBook()
+
+    for i in range(n):
+        name, tel = input("이름과전화번호(이름과번호는빈칸없이입력)>>>").split()
+        phone = Phone(name, tel)
+        phonebook.add(phone)
+    print("저장되었습니다...\n")
+
+    while True:
+        name = input("검색할이름>>")
+        if name == "그만":
+            print("\"그만\"을입력하면프로그램종료해라")
+            break
+        tel = phonebook.search(name)
+        if tel == None:
+            print(name, "이없습니다.")
+        else:
+            print(name, "의번호는", tel, "입니다.")
